@@ -1,0 +1,7 @@
+@import 'globals/variables';
+@import 'globals/mixins';
+
+.container {
+	@include expanded;
+	@include centered;
+}

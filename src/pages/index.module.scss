@@ -1,0 +1,17 @@
+@import 'globals/variables';
+@import 'globals/mixins';
+
+.brand {
+	font-size: $font-maxima;
+}
+
+.brand-l2 {
+	font-size: $font-title;
+	letter-spacing: 0.3rem;
+}
+
+.container {
+	@include expanded;
+	@include centered(true);
+	font-family: 'Alegreya Sans SC', sans-serif;
+}

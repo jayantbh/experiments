@@ -1,0 +1,52 @@
+@import 'globals/variables';
+@import 'globals/mixins';
+
+.container {
+	position: fixed;
+	height: 100vh;
+	width: 320px;
+	max-width: 90%;
+	top: 0;
+	left: 0;
+	background-color: $bluegrey-dark-4;
+}
+
+.activation-button {
+	position: fixed;
+	top: 0;
+	left: 0;
+}
+
+.icon {
+	padding: $grid-base-6x;
+}
+
+.close-icon {
+	color: white;
+}
+
+.sidebar-brand {
+	display: flex;
+	align-items: center;
+}
+
+.sidebar-label {
+	font-family: 'Alegreya Sans SC', sans-serif;
+	font-size: $font-big-1;
+	color: white;
+	letter-spacing: 0.3rem;
+	text-decoration: none;
+}
+
+.invisible-overlay {
+	position: fixed;
+	z-index: 0;
+	@include expanded;
+}
+
+.nav-link {
+	text-decoration: none;
+	color: white;
+	padding: $grid-base-4x $grid-base-6x;
+	font-family: 'KoHo', sans-serif;
+}

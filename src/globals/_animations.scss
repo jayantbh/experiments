@@ -1,0 +1,6 @@
+@import 'globals/mixins';
+
+@keyframes fade-in-up {
+	0% { @include initial-state-fade-in-up; }
+	100% { opacity: 1; transform: translateY(0px); }
+}
