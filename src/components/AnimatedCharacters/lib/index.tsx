@@ -1,10 +1,6 @@
-import React, { lazy, PureComponent, Suspense, useLayoutEffect } from 'react';
+import React, { ComponentType, SVGAttributes, useLayoutEffect } from 'react';
+import Loadable from 'react-loadable';
 import uuid from 'uuid/v4';
-
-export const character = (letter: string = 'A', font: string = 'Product Sans') => {
-	return lazy(() =>
-		import(/* webpackMode: 'eager', webpackPreload: true */ `!@svgr/webpack!charset/${font}/${letter}.svg`));
-};
 
 interface CommonGenericLetterProps {
 	fontSize?: number;
@@ -30,6 +26,21 @@ const FallbackLetter = ({ fontSize = 100, staggerDuration = 0, index, delay = 0,
 	return (<div style={{ height: fontSize, width: fontSize / 1.2 }}/>);
 };
 
+const LoadableCharacter = (
+	letter: string = 'A',
+	font: string = 'Product Sans',
+	fallbackProps: FallbackLetterProps,
+): ComponentType<SVGAttributes<SVGElement>> => Loadable({
+	loader: () => import(/* webpackMode: 'eager', webpackPreload: true */ `!@svgr/webpack!charset/${font}/${letter}.svg`),
+	loading() {
+		return <FallbackLetter {...fallbackProps}/>;
+	},
+	render(l, p) {
+		const C = l.default;
+		return <C {...p}/>;
+	},
+});
+
 type LetterProps = GenericLetterProps & {
 	index?: number,
 	letter: string,
@@ -38,26 +49,16 @@ type LetterProps = GenericLetterProps & {
 export const Letter = ({
 	index = 0, letter = 'A', font = 'Product Sans', fontSize = 100, staggerDuration = 0, delay = 0,
 }: LetterProps) => {
-	const Character = character(letter, font);
 	const id = uuid();
+	const Character = LoadableCharacter(letter, font, {
+		fontSize, staggerDuration, delay, id, index,
+	});
 	return (
-		<Suspense
-			fallback={
-				<FallbackLetter
-					fontSize={fontSize}
-					staggerDuration={staggerDuration}
-					delay={delay}
-					id={id}
-					index={index}
-				/>
-			}
-		>
 			<Character
 				id={id}
 				style={{ visibility: 'hidden' }}
 				height={fontSize}
 			/>
-		</Suspense>
 	);
 };
 

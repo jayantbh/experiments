@@ -1,4 +1,5 @@
-export { default as default } from 'components/AnimatedCharacters/index';
+import component from 'components/AnimatedCharacters/index';
+export default component;
 
 export const frontmatter = {
 	title: 'Animated Characters',
