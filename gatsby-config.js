@@ -1,4 +1,5 @@
 module.exports = {
+  pathPrefix: '/experiments',
   siteMetadata: {
     name: `jayant.dev`,
     tagline: `A project showcasing a collection of experiments.`
