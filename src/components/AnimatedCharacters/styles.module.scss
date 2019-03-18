@@ -3,5 +3,5 @@
 
 .container {
 	@include expanded;
-	@include centered;
+	@include centered(true);
 }
