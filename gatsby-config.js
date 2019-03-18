@@ -41,5 +41,6 @@ module.exports = {
     `gatsby-plugin-typescript`,
 	  `gatsby-plugin-react-helmet`,
     `gatsby-plugin-tslint`,
+	  `gatsby-plugin-remove-trailing-slashes`,
   ],
 };
