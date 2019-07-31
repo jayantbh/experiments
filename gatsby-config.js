@@ -20,7 +20,8 @@ module.exports = {
 		  options: {
 			  fonts: [
 				  `Alegreya Sans SC\:400,500,500i`,
-				  `KoHo\:300,400,500,600` // you can also specify font weights and styles
+				  `KoHo\:300,400,500,600`,
+				  `Lato\:300,400,700`
 			  ]
 		  }
 	  }, {
@@ -43,5 +44,6 @@ module.exports = {
 	  `gatsby-plugin-react-helmet`,
     `gatsby-plugin-tslint`,
 	  `gatsby-plugin-remove-trailing-slashes`,
+	  `gatsby-plugin-svgr`
   ],
 };

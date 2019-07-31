@@ -47,6 +47,19 @@
 .nav-link {
 	text-decoration: none;
 	color: white;
-	padding: $grid-base-4x $grid-base-6x;
+	padding: $grid-base-2x $grid-base-6x;
 	font-family: 'KoHo', sans-serif;
+	display: inline-block;
+}
+
+.nav-ul {
+	padding: 0;
+	margin: 0;
+}
+
+.nav-li {
+	list-style-type: none;
+	&:hover {
+		background-color: rgba(255, 255, 255, 0.2);
+	}
 }

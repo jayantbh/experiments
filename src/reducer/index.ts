@@ -7,19 +7,19 @@ import application, { ApplicationState } from './application.reducer';
 const isNotProd = process.env.NODE_ENV !== 'production';
 
 export interface ReduxState {
-	application: ApplicationState;
+  application: ApplicationState;
 }
 
 const rootReducer = combineReducers<ReduxState>({
-	application,
+  application,
 });
 
 let middlewares: Array<Middleware<{}, any, Dispatch<AnyAction>>> = [];
 middlewares = isNotProd ? [reduxImmutableStateInvariant(), ...middlewares] : middlewares;
 
 export default () => createStore(
-	rootReducer,
-	composeWithDevTools(
-		applyMiddleware(...middlewares),
-	),
+  rootReducer,
+  composeWithDevTools(
+    applyMiddleware(...middlewares),
+  ),
 );

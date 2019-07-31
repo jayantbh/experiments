@@ -6,13 +6,13 @@ import createStore from 'reducer';
 import Layout from './';
 
 it('Layout tree looks like how it should', () => {
-	const props = {};
+  const props = {};
 
-	const component = renderer.create((
-		<StoreContext.Provider value={createStore()}>
-			<Layout {...props}>Hello World</Layout>
-		</StoreContext.Provider>
-	));
-	const tree = component.toJSON();
-	expect(tree).toMatchSnapshot();
+  const component = renderer.create((
+    <StoreContext.Provider value={createStore()}>
+      <Layout {...props}>Hello World</Layout>
+    </StoreContext.Provider>
+  ));
+  const tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
 });

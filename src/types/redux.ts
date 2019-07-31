@@ -1,4 +1,4 @@
 export interface ReduxAction<T> {
-	type: T;
-	payload?: any;
+  type: T;
+  payload?: any;
 }

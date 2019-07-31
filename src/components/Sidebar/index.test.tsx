@@ -6,13 +6,13 @@ import createStore from 'reducer';
 import Sidebar from './';
 
 it('Sidebar tree looks like how it should', () => {
-	const props = {};
+  const props = {};
 
-	const component = renderer.create((
-		<StoreContext.Provider value={createStore()}>
-			<Sidebar {...props}/>
-		</StoreContext.Provider>
-	));
-	const tree = component.toJSON();
-	expect(tree).toMatchSnapshot();
+  const component = renderer.create((
+    <StoreContext.Provider value={createStore()}>
+      <Sidebar {...props}/>
+    </StoreContext.Provider>
+  ));
+  const tree = component.toJSON();
+  expect(tree).toMatchSnapshot();
 });

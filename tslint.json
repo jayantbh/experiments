@@ -9,7 +9,7 @@
       "quotemark": [true, "single"],
       "interface-name": [false],
       "jsx-no-multiline-js": [false],
-			"indent": [true, "tabs", 2],
+			"indent": [true, "spaces", 2],
 			"object-literal-sort-keys": false,
 			"curly": false,
 			"no-empty": false
