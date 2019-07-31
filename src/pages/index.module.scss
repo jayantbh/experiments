@@ -2,22 +2,22 @@
 @import 'globals/mixins';
 
 .brand {
-	font-size: $font-maxima;
+  font-size: $font-maxima;
 }
 
 .padded {
-	padding: $grid-base-6x;
+  padding: $grid-base-6x;
 }
 
 .brand-l2 {
-	font-size: $font-title;
-	letter-spacing: 0.3rem;
+  font-size: $font-title;
+  letter-spacing: 0.3rem;
 }
 
 .container {
-	@include expanded;
-	@include centered(true);
-	font-family: 'Alegreya Sans SC', sans-serif;
-	text-align: center;
-	box-sizing: border-box;
+  @include expanded;
+  @include centered(true);
+  font-family: 'Alegreya Sans SC', sans-serif;
+  text-align: center;
+  box-sizing: border-box;
 }
