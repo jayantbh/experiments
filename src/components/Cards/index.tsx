@@ -1,4 +1,5 @@
 import { ReactComponent as VisaLogo } from 'assets/visa_logo.svg';
+import { ReactComponent as VisaLogoRed } from 'assets/visa_logo_red.svg';
 import cls from 'classnames';
 import Layout from 'components/Layout';
 import React, { HTMLAttributes } from 'react';
@@ -12,26 +13,29 @@ const Cards = () => (
     <div className={css.container}>
       <div className={css['card-wrapper']}>
         <CardWithReflection/>
+        <CardWithReflection theme='red'/>
       </div>
     </div>
   </Layout>
 );
 
-const CardWithReflection = (props: HTMLAttributes<HTMLDivElement>) => (
-  <div {...props} className={cls(css['card-with-reflection'], props.className)}>
-    <CardWithShadow/>
-    <CardWithShadow className={css.reflection}/>
+type CardNestingProps = HTMLAttributes<HTMLDivElement> & { theme?: 'default' | 'red' };
+
+const CardWithReflection = (props: CardNestingProps) => (
+  <div {...props} className={cls(css[`theme--${props.theme}`], props.className)}>
+    <CardWithShadow theme={props.theme}/>
+    <CardWithShadow theme={props.theme} className={css.reflection}/>
   </div>
 );
 
-const CardWithShadow = (props: HTMLAttributes<HTMLDivElement>) => (
+const CardWithShadow = (props: CardNestingProps) => (
   <div {...props} className={cls(css['card-with-shadow'], props.className)}>
-    <Card className={css['absolute-card']}/>
-    <Card/>
+    <Card theme={props.theme} className={css['absolute-card']}/>
+    <Card theme={props.theme}/>
   </div>
 );
 
-const Card = (props: HTMLAttributes<HTMLDivElement>) => (
+const Card = (props: CardNestingProps) => (
   <div {...props} className={cls(css.card, props.className)}>
     <div className={css.backdrop}>
       {Array(4).fill(0).map((_, i) => <div className={css.abstract} key={i}/>)}
@@ -50,7 +54,7 @@ const Card = (props: HTMLAttributes<HTMLDivElement>) => (
       </div>
       <div className={css.footer}>
         <div className={css.user}>JAYANT BHAWAL</div>
-        <VisaLogo/>
+        {props.theme === 'red' ? <VisaLogoRed/> : <VisaLogo/>}
       </div>
     </div>
     <div className={css.shimmer}/>

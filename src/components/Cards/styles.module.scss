@@ -67,7 +67,7 @@
 
 .brand {
 	font-weight: $weight-normal;
-	font-size: $font-big-1;
+	font-size: 22px;
 }
 
 .tag {
@@ -102,6 +102,7 @@
 .label {
 	font-size: $font-small-3;
 	font-weight: $weight-light;
+  margin-top: $grid-base;
 }
 
 .footer {
@@ -129,9 +130,11 @@
 }
 
 .card-wrapper {
-  display: flex;
-  flex-direction: column;
   position: relative;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-column-gap: $grid-base * 20;
+  height: 320px;
 }
 
 .card-with-shadow {
@@ -153,6 +156,9 @@
   transform: rotateX(180deg);
   position: relative;
   z-index: -1;
+  pointer-events: none;
+  user-select: none;
+  tab-index: -1;
 
   $offset: 48px;
   &:after {
@@ -164,5 +170,23 @@
     z-index: 1;
     top: -($offset/2);
     left: -($offset/2);
+  }
+}
+
+.theme--red {
+  .card {
+    color: $red-light-5;
+    background-color: #622626;
+  }
+  .backdrop {
+    .abstract:nth-child(2n + 1) {
+      @include expanded;
+      background: linear-gradient(246.07deg, #E66B6B 100%, #A71B1B 14.6%);
+    }
+
+    .abstract:nth-child(2n) {
+      @include expanded;
+      background-color: #622626;
+    }
   }
 }
