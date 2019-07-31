@@ -1,31 +1,31 @@
 import CloseRounded from '@material-ui/icons/CloseRounded';
 import MenuRounded from '@material-ui/icons/MenuRounded';
-import { Link, useStaticQuery } from 'gatsby';
+import { AnimatePresence, motion } from 'framer-motion';
 import { graphql } from 'gatsby';
-import React, { useCallback, useMemo } from 'react';
-import posed, { PoseGroup } from 'react-pose';
+import { Link, useStaticQuery } from 'gatsby';
+import React, { useCallback } from 'react';
 import { ReduxState } from 'reducer';
 import { TOGGLE_SIDEBAR } from 'reducer/application.actions';
 import { Dispatch } from 'redux';
 import { useDispatch, useMappedState } from 'redux-react-hook';
 import './styles.module.scss';
 
-const SidebarWrapper = posed.div({
+const variants = {
   enter: {
     x: '0%',
     transition: {
       ease: 'easeOut',
-      duration: 350,
+      duration: 350 / 1000,
     },
   },
   exit: {
     x: '-100%',
     transition: {
       ease: 'easeIn',
-      duration: 350,
+      duration: 350 / 1000,
     },
   },
-});
+};
 
 const query = graphql`query {
   allSitePage {
@@ -109,11 +109,15 @@ const Sidebar = () => {
         <MenuRounded styleName='icon' fontSize='large'/>
       </div>
       {active && <div styleName='invisible-overlay' onClick={toggleSidebar}/>}
-      <PoseGroup>
+      <AnimatePresence>
         {active &&
-        <SidebarWrapper
+        <motion.div
           key='sidebar'
           styleName='container'
+          variants={variants}
+          initial='exit'
+          animate='enter'
+          exit='exit'
         >
           <div styleName='sidebar-brand'>
             <CloseRounded
@@ -128,9 +132,9 @@ const Sidebar = () => {
               <li key={i} styleName='nav-li'><Link styleName='nav-link' to={item.path}>{item.title}</Link></li>
             ))}
           </ul>
-        </SidebarWrapper>
+        </motion.div>
         }
-      </PoseGroup>
+      </AnimatePresence>
     </>
   );
 };
