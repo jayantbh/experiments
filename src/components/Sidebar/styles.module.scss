@@ -9,6 +9,7 @@
 	top: 0;
 	left: 0;
 	background-color: $bluegrey-dark-4;
+  z-index: $z--maximum;
 }
 
 .activation-button {
@@ -50,6 +51,8 @@
 	padding: $grid-base-2x $grid-base-6x;
 	font-family: 'KoHo', sans-serif;
 	display: inline-block;
+  box-sizing: border-box;
+  width: 100%;
 }
 
 .nav-ul {
