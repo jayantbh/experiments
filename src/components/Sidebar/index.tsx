@@ -101,7 +101,7 @@ const Sidebar = () => {
   const { active } = useMappedState(mapState);
   const { toggleSidebar } = dispatchProps();
 
-  const navItems = useMemo(() => getNavItems(useStaticQuery(query)), []);
+  const navItems = getNavItems(useStaticQuery(query));
 
   return (
     <>
