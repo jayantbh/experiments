@@ -47,6 +47,12 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-tslint`,
     `gatsby-plugin-remove-trailing-slashes`,
-    `gatsby-plugin-svgr`
+    `gatsby-plugin-svgr`,
+    {
+      resolve: `gatsby-plugin-layout`,
+      options: {
+        component: require.resolve(`./src/components/Layout/index.tsx`)
+      }
+    },
   ],
 };

@@ -3,7 +3,7 @@ import MenuRounded from '@material-ui/icons/MenuRounded';
 import { AnimatePresence, motion } from 'framer-motion';
 import { graphql } from 'gatsby';
 import { Link, useStaticQuery } from 'gatsby';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useMemo } from 'react';
 import { ReduxState } from 'reducer';
 import { TOGGLE_SIDEBAR } from 'reducer/application.actions';
 import { Dispatch } from 'redux';
@@ -101,7 +101,8 @@ const Sidebar = () => {
   const { active } = useMappedState(mapState);
   const { toggleSidebar } = dispatchProps();
 
-  const navItems = getNavItems(useStaticQuery(query));
+  const queryNavItems = getNavItems(useStaticQuery(query));
+  const navItems = useMemo(() => queryNavItems, []);
 
   return (
     <>

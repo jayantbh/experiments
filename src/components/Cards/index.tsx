@@ -1,7 +1,6 @@
 import { ReactComponent as VisaLogo } from 'assets/visa_logo.svg';
 import { ReactComponent as VisaLogoRed } from 'assets/visa_logo_red.svg';
 import cls from 'classnames';
-import Layout from 'components/Layout';
 import React, { HTMLAttributes } from 'react';
 
 import css from './styles.module.scss';
@@ -9,14 +8,12 @@ import css from './styles.module.scss';
 const CARD_NUM = '9237814123973230';
 
 const Cards = () => (
-  <Layout>
-    <div className={css.container}>
-      <div className={css['card-wrapper']}>
-        <CardWithReflection/>
-        <CardWithReflection theme='red'/>
-      </div>
+  <div className={css.container}>
+    <div className={css['card-wrapper']}>
+      <CardWithReflection/>
+      <CardWithReflection theme='red'/>
     </div>
-  </Layout>
+  </div>
 );
 
 type CardNestingProps = HTMLAttributes<HTMLDivElement> & { theme?: 'default' | 'red' };
