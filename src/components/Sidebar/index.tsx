@@ -3,7 +3,7 @@ import MenuRounded from '@material-ui/icons/MenuRounded';
 import { AnimatePresence, motion } from 'framer-motion';
 import { graphql } from 'gatsby';
 import { Link, useStaticQuery } from 'gatsby';
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { ReduxState } from 'reducer';
 import { TOGGLE_SIDEBAR } from 'reducer/application.actions';
 import { Dispatch } from 'redux';
