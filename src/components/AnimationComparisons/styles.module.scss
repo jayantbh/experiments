@@ -3,6 +3,107 @@
 
 .container {
 	@include expanded;
-	@include centered;
-	color: $greyscale-dark-4;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 80px;
+  box-sizing: border-box;
+  font-family: Lato, sans-serif;
+}
+
+.title {
+  font-size: $font-big;
+  align-self: flex-start;
+  margin-bottom: $grid-base-3x;
+}
+
+.actions {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: $grid-base-4x;
+  align-self: flex-start;
+  margin-bottom: $grid-base-5x;
+}
+
+.trigger {
+  border: 1px dashed;
+  border-radius: $grid-base;
+  padding: $grid-base $grid-base-2x;
+  user-select: none;
+  display: flex;
+  align-items: baseline;
+
+  pre {
+    margin: 0 0 0 $grid-base;
+    line-height: 1;
+    font-size: larger;
+  }
+
+  &.triggered {
+    border-style: solid;
+  }
+}
+
+.animatables-wrapper {
+  display: grid;
+  height: 80%;
+  width: 100%;
+  min-height: 400px;
+  align-items: center;
+  position: relative;
+}
+
+$grid-gap: 2px;
+$grid-rows: 20;
+$grid-size: 10px;
+$wrapper-dimensions: ($grid-size * $grid-rows) + ($grid-rows - 1) * $grid-gap;
+$parent-padding: 160px;
+$offset: $wrapper-dimensions + $parent-padding;
+
+.element-wrappers {
+  display: grid;
+  grid-template-columns: repeat($grid-rows, $grid-size);
+  grid-gap: $grid-gap;
+
+  margin-bottom: $grid-base-3x;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.animatable {
+  @include square($grid-size);
+  border-radius: $grid-size / 8;
+}
+
+@keyframes animate-left {
+  from { right: 0; }
+  to { right: calc(-100vw + #{$offset}); }
+}
+
+.item-1 {
+  position: relative;
+  background-color: $blue-standard;
+
+  &.animated {
+    animation: animate-left $animation-standard ease-out infinite;
+  }
+}
+
+@keyframes animate-transform {
+  from { transform: translateX(0); }
+  to { transform: translateX(calc(100vw - #{$offset})); }
+}
+
+.item-2 {
+  background-color: $green-dark-2;
+
+  &.animated {
+    animation: animate-transform $animation-standard ease-out infinite;
+  }
+}
+
+.item-3 {
+  background-color: $red-dark-1;
 }
