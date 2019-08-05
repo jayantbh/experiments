@@ -32,7 +32,7 @@ const CanvasDraw = () => {
 
   const ref = useRef<HTMLCanvasElement>(null);
   const onMouseMove = useCallback(
-    (e: React.MouseEvent<HTMLCanvasElement, MouseEvent>) => {
+    (e: React.MouseEvent<HTMLCanvasElement, MouseEvent> | React.TouchEvent<HTMLCanvasElement>) => {
       if (!doDraw) lastCoords = null;
       if (!ref || !ref.current || !doDraw) return;
       const canvas = ref.current;
@@ -40,8 +40,7 @@ const CanvasDraw = () => {
       if (frame) cancelAnimationFrame(frame);
 
       const rect = canvas.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const { x, y } = getEventXY(e, rect);
 
       frame = requestAnimationFrame(() => {
         const ctx = canvas.getContext('2d');
@@ -66,6 +65,20 @@ const CanvasDraw = () => {
     setDoDraw(hasTrigger);
   }, []);
 
+  const onTouchStart = useCallback((e: React.TouchEvent<HTMLCanvasElement>) => {
+    requestAnimationFrame(() => {
+      lastCoords = null;
+    });
+    setDoDraw(true);
+  }, []);
+
+  const onTouchEnd = useCallback((e: React.TouchEvent<HTMLCanvasElement>) => {
+    setDoDraw(false);
+    requestAnimationFrame(() => {
+      lastCoords = null;
+    });
+  }, []);
+
   const onPickColor = useCallback(
     (i: number) => () => {
       setColorIndex(i);
@@ -81,6 +94,9 @@ const CanvasDraw = () => {
         onMouseMove={onMouseMove}
         onMouseUp={onTrigger}
         onMouseDown={onTrigger}
+        onTouchStart={onTouchStart}
+        onTouchEnd={onTouchEnd}
+        onTouchMove={onMouseMove}
       />
       <div className={css['color-palette']}>
         {colors.map((c: string, i) => (
@@ -94,6 +110,27 @@ const CanvasDraw = () => {
       </div>
     </div>
   );
+};
+
+const getEventXY = (
+  ev: React.MouseEvent<HTMLCanvasElement, MouseEvent> | React.TouchEvent<HTMLCanvasElement>,
+  rect: ClientRect
+) => {
+  if (Object(ev).hasOwnProperty('clientX') && Object(ev).hasOwnProperty('clientY')) {
+    const e = ev as React.MouseEvent<HTMLCanvasElement, MouseEvent>;
+    return {
+      x: e.clientX - rect.left,
+      y: e.clientY - rect.top,
+    };
+  } else if (Object(ev).hasOwnProperty('touches')) {
+    const e = ev as React.TouchEvent<HTMLCanvasElement>;
+    return {
+      x: e.touches[0].clientX - rect.left,
+      y: e.touches[0].clientY - rect.top,
+    };
+  }
+
+  return { x: -Infinity, y: -Infinity };
 };
 
 const ctxPathFrom = (ctx: CanvasRenderingContext2D, x: number, y: number) => {
