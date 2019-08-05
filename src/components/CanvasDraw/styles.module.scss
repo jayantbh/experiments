@@ -16,12 +16,15 @@
   left: 100px;
   display: flex;
   padding: $grid-base-6x $grid-base-6x $grid-base-6x 0;
+  max-width: calc(100% - 100px);
+  flex-wrap: wrap;
 }
 
 .color {
   @include circle(30px);
   border: 3px solid $grey-light-3;
   margin-right: $grid-base;
+  margin-bottom: $grid-base;
   transform: border-color $animation-standard, transform $animation-standard;
 }
 
