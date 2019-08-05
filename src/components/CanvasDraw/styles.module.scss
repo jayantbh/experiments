@@ -1,0 +1,31 @@
+@import 'globals/variables';
+@import 'globals/mixins';
+
+.container {
+	@include expanded;
+	@include centered;
+}
+
+.canvas {
+  @include expanded;
+}
+
+.color-palette {
+  position: absolute;
+  top: 0;
+  left: 100px;
+  display: flex;
+  padding: $grid-base-6x $grid-base-6x $grid-base-6x 0;
+}
+
+.color {
+  @include circle(30px);
+  border: 3px solid $grey-light-3;
+  margin-right: $grid-base;
+  transform: border-color $animation-standard, transform $animation-standard;
+}
+
+.active-color {
+  border-color: $grey-standard;
+  transform: scale(1.1);
+}
