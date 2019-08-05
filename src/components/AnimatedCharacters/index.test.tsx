@@ -8,11 +8,11 @@ import AnimatedCharacters from './';
 it('AnimatedCharacters tree looks like how it should', () => {
   const props = {};
 
-  const component = renderer.create((
+  const component = renderer.create(
     <StoreContext.Provider value={createStore()}>
       <AnimatedCharacters {...props} />
     </StoreContext.Provider>
-  ));
+  );
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });

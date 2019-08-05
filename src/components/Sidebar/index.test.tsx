@@ -8,11 +8,11 @@ import Sidebar from './';
 it('Sidebar tree looks like how it should', () => {
   const props = {};
 
-  const component = renderer.create((
+  const component = renderer.create(
     <StoreContext.Provider value={createStore()}>
-      <Sidebar {...props}/>
+      <Sidebar {...props} />
     </StoreContext.Provider>
-  ));
+  );
   const tree = component.toJSON();
   expect(tree).toMatchSnapshot();
 });

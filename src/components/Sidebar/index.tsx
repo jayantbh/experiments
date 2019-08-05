@@ -1,5 +1,6 @@
 import CloseRounded from '@material-ui/icons/CloseRounded';
 import MenuRounded from '@material-ui/icons/MenuRounded';
+import cls from 'classnames';
 import { AnimatePresence, motion } from 'framer-motion';
 import { graphql } from 'gatsby';
 import { Link, useStaticQuery } from 'gatsby';
@@ -8,7 +9,7 @@ import { ReduxState } from 'reducer';
 import { TOGGLE_SIDEBAR } from 'reducer/application.actions';
 import { Dispatch } from 'redux';
 import { useDispatch, useMappedState } from 'redux-react-hook';
-import './styles.module.scss';
+import css from './styles.module.scss';
 
 const variants = {
   enter: {
@@ -27,34 +28,36 @@ const variants = {
   },
 };
 
-const query = graphql`query {
-  allSitePage {
-    edges {
-      node {
-        componentPath,
-        path
+const query = graphql`
+  query {
+    allSitePage {
+      edges {
+        node {
+          componentPath
+          path
+        }
       }
     }
-  },
-  allJavascriptFrontmatter {
-    edges {
-      node {
-        frontmatter {
-          title
-          categories
-          description
-          error
-        },
-        fileAbsolutePath
+    allJavascriptFrontmatter {
+      edges {
+        node {
+          frontmatter {
+            title
+            categories
+            description
+            error
+          }
+          fileAbsolutePath
+        }
       }
     }
   }
-}`;
+`;
 
 interface AllSitePageEdge {
   node: {
-    componentPath: string,
-    path: string,
+    componentPath: string;
+    path: string;
   };
 }
 
@@ -67,17 +70,17 @@ interface FrontmatterNode {
 
 interface AllJavascriptFrontmatterEdge {
   node: {
-    frontmatter: FrontmatterNode,
-    fileAbsolutePath: string,
+    frontmatter: FrontmatterNode;
+    fileAbsolutePath: string;
   };
 }
 
 interface NavQuery {
   allSitePage: {
-    edges: AllSitePageEdge[],
+    edges: AllSitePageEdge[];
   };
   allJavascriptFrontmatter: {
-    edges: AllJavascriptFrontmatterEdge[],
+    edges: AllJavascriptFrontmatterEdge[];
   };
 }
 
@@ -88,8 +91,9 @@ interface NavItem extends FrontmatterNode {
 const getNavItems = (queryData: NavQuery): NavItem[] => {
   if (!queryData) return [];
   return queryData.allJavascriptFrontmatter.edges.map((fmEdge: any) => {
-    const matchingAspEdge = queryData.allSitePage.edges.find((aspEdge: any) =>
-      aspEdge.node.componentPath === fmEdge.node.fileAbsolutePath) as AllSitePageEdge;
+    const matchingAspEdge = queryData.allSitePage.edges.find(
+      (aspEdge: any) => aspEdge.node.componentPath === fmEdge.node.fileAbsolutePath
+    ) as AllSitePageEdge;
 
     return { ...fmEdge.node.frontmatter, path: matchingAspEdge.node.path };
   });
@@ -106,41 +110,43 @@ const Sidebar = () => {
 
   return (
     <>
-      <div styleName='activation-button' onClick={toggleSidebar}>
-        <MenuRounded styleName='icon' fontSize='large'/>
+      <div className={css['activation-button']} onClick={toggleSidebar}>
+        <MenuRounded className={css.icon} />
       </div>
-      {active && <div styleName='invisible-overlay' onClick={toggleSidebar}/>}
+      {active && <div className={css['invisible-overlay']} onClick={toggleSidebar} />}
       <AnimatePresence>
-        {active &&
-        <motion.div
-          key='sidebar'
-          styleName='container'
-          variants={variants}
-          initial='exit'
-          animate='enter'
-          exit='exit'
-        >
-          <div styleName='sidebar-brand'>
-            <CloseRounded
-              fontSize='large'
-              styleName='icon close-icon'
-              onClick={toggleSidebar}
-            />
-            <Link to={'/'} styleName='sidebar-label'>EXPERIMENTS</Link>
-          </div>
-          <ul styleName='nav-ul'>
-            {navItems.map((item, i) => (
-              <li key={i} styleName='nav-li'><Link styleName='nav-link' to={item.path}>{item.title}</Link></li>
-            ))}
-          </ul>
-        </motion.div>
-        }
+        {active && (
+          <motion.div
+            key='sidebar'
+            className={css.container}
+            variants={variants}
+            initial='exit'
+            animate='enter'
+            exit='exit'
+          >
+            <div className={css['sidebar-brand']}>
+              <CloseRounded fontSize='large' className={cls(css.icon, css['close-icon'])} onClick={toggleSidebar} />
+              <Link to={'/'} className={css['sidebar-label']}>
+                EXPERIMENTS
+              </Link>
+            </div>
+            <ul className={css['nav-ul']}>
+              {navItems.map((item, i) => (
+                <li key={i} className={css['nav-li']}>
+                  <Link className={css['nav-link']} activeClassName={css['active-link']} to={item.path}>
+                    {item.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+        )}
       </AnimatePresence>
     </>
   );
 };
 
-const mapStateToProps = ({ application: { showSidebar }}: ReduxState) => {
+const mapStateToProps = ({ application: { showSidebar } }: ReduxState) => {
   return { active: showSidebar };
 };
 

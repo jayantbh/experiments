@@ -13,7 +13,8 @@ const reducer: Reducer<ApplicationState> = (state: ApplicationState = defaultSta
   switch (action.type) {
     case ACTIONS.TOGGLE_SIDEBAR:
       return { ...state, showSidebar: !state.showSidebar };
-    default: return state;
+    default:
+      return state;
   }
 };
 

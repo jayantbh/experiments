@@ -14,12 +14,7 @@ const rootReducer = combineReducers<ReduxState>({
   application,
 });
 
-let middlewares: Array<Middleware<{}, any, Dispatch<AnyAction>>> = [];
+let middlewares: Array<Middleware<{}, any, Dispatch<AnyAction>>> = [];
 middlewares = isNotProd ? [reduxImmutableStateInvariant(), ...middlewares] : middlewares;
 
-export default () => createStore(
-  rootReducer,
-  composeWithDevTools(
-    applyMiddleware(...middlewares),
-  ),
-);
+export default () => createStore(rootReducer, composeWithDevTools(applyMiddleware(...middlewares)));

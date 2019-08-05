@@ -20,43 +20,46 @@ const AnimationComparisons = () => {
         <div className={cls(css.trigger, animated1 && css.triggered)} onClick={toggleAnimated1}>
           CSS Property: <pre>right</pre>
         </div>
-        <div className={cls(css.trigger, animated2 && css.triggered)} onClick={toggleAnimated2}>CSS Transforms</div>
-        <div className={cls(css.trigger, animated3 && css.triggered)} onClick={toggleAnimated3}>Framer Motion</div>
+        <div className={cls(css.trigger, animated2 && css.triggered)} onClick={toggleAnimated2}>
+          CSS Transforms
+        </div>
+        <div className={cls(css.trigger, animated3 && css.triggered)} onClick={toggleAnimated3}>
+          Framer Motion
+        </div>
       </div>
       <div className={css['animatables-wrapper']}>
         <div className={css['element-wrappers']}>
-          {animated1 && Array(ELEMENTS_PER_TEST).fill(0).map((_, i) => (
-            <div
-              key={i}
-              className={cls(css.animatable, css['item-1'], css.animated)}
-            />
-          ))}
+          {animated1 &&
+            Array(ELEMENTS_PER_TEST)
+              .fill(0)
+              .map((_, i) => <div key={i} className={cls(css.animatable, css['item-1'], css.animated)} />)}
         </div>
         <div className={css['element-wrappers']}>
-          {animated2 && Array(ELEMENTS_PER_TEST).fill(0).map((_, i) => (
-            <div
-              key={i}
-              className={cls(css.animatable, css['item-2'], css.animated)}
-            />
-          ))}
+          {animated2 &&
+            Array(ELEMENTS_PER_TEST)
+              .fill(0)
+              .map((_, i) => <div key={i} className={cls(css.animatable, css['item-2'], css.animated)} />)}
         </div>
         <div className={css['element-wrappers']}>
-          {animated3 && Array(ELEMENTS_PER_TEST).fill(0).map((_, i) => (
-            <motion.div
-              key={i}
-              className={cls(css.animatable, css['item-3'])}
-              initial={{ x: 0 }}
-              animate={{
-                // Read this from CSS in browser
-                x: 'calc(100vw - 398px)',
-              }}
-              transition={{
-                ease: 'easeOut',
-                duration: 0.25,
-                loop: Infinity,
-              }}
-            />
-          ))}
+          {animated3 &&
+            Array(ELEMENTS_PER_TEST)
+              .fill(0)
+              .map((_, i) => (
+                <motion.div
+                  key={i}
+                  className={cls(css.animatable, css['item-3'])}
+                  initial={{ x: 0 }}
+                  animate={{
+                    // Read this from CSS in browser
+                    x: 'calc(100vw - 398px)',
+                  }}
+                  transition={{
+                    ease: 'easeOut',
+                    duration: 0.25,
+                    loop: Infinity,
+                  }}
+                />
+              ))}
         </div>
       </div>
     </div>
