@@ -4,6 +4,7 @@
 .container {
 	@include expanded;
 	@include centered;
+  overflow: hidden;
 }
 
 .canvas {
