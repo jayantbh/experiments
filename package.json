@@ -9,7 +9,8 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "test": "jest",
-    "deploy": "gatsby build && gh-pages -d public"
+    "predeploy": "gatsby build && echo \"jayant.dev\" > ./public/CNAME",
+    "deploy": "gh-pages -d public"
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
