@@ -1,0 +1,145 @@
+@import 'globals/variables';
+@import 'globals/mixins';
+
+.container {
+	@include expanded;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-family: Lato, sans-serif;
+  color: $grey-dark-4;
+
+  h1, h2 {
+    font-weight: lighter;
+  }
+}
+
+.navigation {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: $grid-base-3x;
+  font-size: $font-big;
+  padding: $grid-base-6x;
+
+  a {
+    text-decoration: none;
+    color: $green-dark-4;
+    &:visited {
+      color: $cyan-dark-2;
+    }
+
+    &.active {
+      font-weight: $weight-bold;
+    }
+  }
+}
+
+.routes-wrapper {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  top: 72px;
+}
+
+.route-container {
+  position: absolute;
+  width: calc(100% - 160px);
+  height: calc(100% - 160px - 72px);
+  margin: 80px;
+  padding: 40px;
+  border-radius: 40px;
+  box-sizing: border-box;
+  overflow: auto;
+
+  &.route-1 {
+    background-color: $blue-light-3;
+  }
+
+  &.route-2 {
+    background-color: $red-light-3;
+  }
+
+  &.route-3 {
+    background: $cyan-light-3;
+  }
+
+  code {
+    font-size: larger;
+  }
+}
+
+.shapes {
+  display: grid;
+  grid-template-columns: repeat(3, 120px);
+  grid-column-gap: $grid-base-6x;
+}
+
+.shape {
+  &.triangle {
+    width: 0;
+    height: 0;
+    border-left: 56px solid transparent;
+    border-right: 56px solid transparent;
+    border-bottom: 100px solid $blue-standard;
+  }
+
+  &.square {
+    @include square(100px);
+    background-color: $blue-standard;
+  }
+
+  &.pentagon {
+    position: relative;
+    width: 54px;
+    box-sizing: content-box;
+    border-width: 55px 29px 0;
+    border-style: solid;
+    top: 45px;
+    border-color: $blue-standard transparent;
+
+    &:before {
+      content: "";
+      position: absolute;
+      height: 0;
+      width: 0;
+      top: -102px;
+      left: -29px;
+      border-width: 0 56px 47px;
+      border-style: solid;
+      border-color: transparent transparent $blue-standard;
+    }
+  }
+}
+
+.color-tile {
+  border-radius: 10px;
+  margin-bottom: 10px;
+  margin-right: 10px;
+  width: 140px;
+  height: 140px;
+  list-style-type: none;
+}
+
+.tiles-container {
+  position: relative;
+  display: flex;
+  width: 300px;
+  flex-wrap: wrap;
+  padding: 0;
+  margin: $grid-base-6x 0 0;
+}
+
+.memory-bar {
+  border-radius: $grid-base-3x;
+  background-color: $cyan-light-5;
+  width: 100%;
+  height: 80px;
+  overflow: hidden;
+  margin-bottom: $grid-base-2x;
+
+  > div {
+    background-color: $cyan-standard;
+    height: 100%;
+    transition: width $quick-ease-out;
+  }
+}

@@ -1,4 +1,4 @@
-import component from 'components/Placeholder/index';
+import component from 'components/ClipPathRoute/index';
 export default component;
 
 export const frontmatter = {
