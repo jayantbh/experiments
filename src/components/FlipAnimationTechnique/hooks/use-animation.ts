@@ -2,7 +2,7 @@ import { usePrevious } from 'hooks/use-previous';
 import { MutableRefObject, useLayoutEffect, useState } from 'react';
 
 export const useAnimation = (elementRef: MutableRefObject<null | HTMLDivElement>, animated: boolean) => {
-  // Maintain state or the element client rect
+  // Maintain state of the element client rect
   const [clientRect, setClientRect] = useState(null as null | ClientRect);
   // Track whether the hook is being called with the same animation state.
   const { animated: prevAnimated } = usePrevious({ animated });
