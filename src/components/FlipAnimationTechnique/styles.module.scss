@@ -75,7 +75,7 @@
 }
 
 .non-flip {
-  transition: all 0.3s ease-in-out;
+  transition: all $animation-standard ease-in-out;
   background-color: $red-standard;
 }
 

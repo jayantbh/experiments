@@ -26,6 +26,25 @@ const FlipAnimationTechnique1 = () => {
 
   return (
     <div className={css.container} onClick={toggleAnimation}>
+      <h2>Without nested content</h2>
+      <div className={css['element-wrapper']}>
+        <div ref={elementRef} className={css['element-common-styles']} style={animated ? before : after} />
+      </div>
+      <div className={css['element-wrapper']}>
+        <div className={cls(css['element-common-styles'], css['non-flip'])} style={animated ? before : after} />
+      </div>
+    </div>
+  );
+};
+
+const FlipAnimationTechnique2 = () => {
+  const elementRef = useRef(null as null | HTMLDivElement);
+  const [animated, setAnimated] = useState(false);
+  const toggleAnimation = useCallback(() => setAnimated(!animated), [animated]);
+  useAnimation(elementRef, animated);
+
+  return (
+    <div className={css.container} onClick={toggleAnimation}>
       <h2>Without child transitions handling</h2>
       <div className={css['element-wrapper']}>
         <div ref={elementRef} className={css['element-common-styles']} style={animated ? before : after}>
@@ -41,7 +60,7 @@ const FlipAnimationTechnique1 = () => {
   );
 };
 
-const FlipAnimationTechnique2 = () => {
+const FlipAnimationTechnique3 = () => {
   const elementRef = useRef(null as null | HTMLDivElement);
   const [animated, setAnimated] = useState(false);
   const toggleAnimation = useCallback(() => setAnimated(!animated), [animated]);
@@ -69,6 +88,7 @@ const FlipAnimationTechniqueRouter = ({ location }: RouteProps) => {
     <Switch location={location}>
       <Route path={'/route-1'} component={FlipAnimationTechnique1} />
       <Route path={'/route-2'} component={FlipAnimationTechnique2} />
+      <Route path={'/route-3'} component={FlipAnimationTechnique3} />
 
       <Redirect to={'/route-1'} />
     </Switch>
@@ -90,7 +110,10 @@ const FlipAnimationTechniqueParent = () => {
             FLIP w/o Children
           </NavLink>
           <NavLink to={'/route-2'} activeClassName={css.active}>
-            FLIP w/ Children
+            FLIP w/o Children Handled
+          </NavLink>
+          <NavLink to={'/route-3'} activeClassName={css.active}>
+            FLIP w/ Children Handled
           </NavLink>
         </div>
         <h2>Click to toggle animation state</h2>
