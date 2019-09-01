@@ -1,0 +1,86 @@
+@import 'globals/variables';
+@import 'globals/mixins';
+
+.container {
+   @include expanded;
+   @include centered(true);
+   color: $grey-dark-4;
+   font-family: Lato, sans-serif;
+
+   h1, h2 {
+     font-weight: lighter;
+   }
+ }
+
+.navigation {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: $grid-base-3x;
+  font-size: $font-big;
+  padding: $grid-base-6x;
+
+  a {
+    text-decoration: none;
+    color: $green-dark-4;
+    &:visited {
+      color: $cyan-dark-2;
+    }
+
+    &.active {
+      font-weight: $weight-bold;
+    }
+  }
+}
+
+.routes-wrapper {
+  width: 100%;
+  position: absolute;
+  height: 100%;
+  top: 72px;
+}
+
+.route-container {
+  position: absolute;
+  width: calc(100% - 160px);
+  height: calc(100% - 160px - 72px);
+  margin: 80px;
+  padding: 40px;
+  border-radius: 40px;
+  box-sizing: border-box;
+  overflow: auto;
+
+  &.route-1 {
+    background-color: $blue-light-3;
+  }
+
+  &.route-2 {
+    background-color: $red-light-3;
+  }
+
+  &.route-3 {
+    background: $cyan-light-3;
+  }
+
+  code {
+    font-size: larger;
+  }
+}
+
+.element-common-styles {
+  background-color: $cyan-standard;
+  position: relative;
+  @include centered;
+  font-family: 'Lato', sans-serif;
+  color: white;
+}
+
+.non-flip {
+  transition: all 0.3s ease-in-out;
+  background-color: $red-standard;
+}
+
+.element-wrapper {
+  height: 220px;
+  width: 100%;
+  @include centered;
+}
