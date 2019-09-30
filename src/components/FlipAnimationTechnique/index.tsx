@@ -22,7 +22,7 @@ const FlipAnimationTechnique1 = () => {
   const elementRef = useRef(null as null | HTMLDivElement);
   const [animated, setAnimated] = useState(false);
   const toggleAnimation = useCallback(() => setAnimated(!animated), [animated]);
-  useAnimation(elementRef, animated);
+  useAnimation(elementRef);
 
   return (
     <div className={css.container} onClick={toggleAnimation}>
@@ -41,7 +41,7 @@ const FlipAnimationTechnique2 = () => {
   const elementRef = useRef(null as null | HTMLDivElement);
   const [animated, setAnimated] = useState(false);
   const toggleAnimation = useCallback(() => setAnimated(!animated), [animated]);
-  useAnimation(elementRef, animated);
+  useAnimation(elementRef);
 
   return (
     <div className={css.container} onClick={toggleAnimation}>

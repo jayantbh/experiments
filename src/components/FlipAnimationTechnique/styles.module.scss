@@ -32,40 +32,6 @@
   }
 }
 
-.routes-wrapper {
-  width: 100%;
-  position: absolute;
-  height: 100%;
-  top: 72px;
-}
-
-.route-container {
-  position: absolute;
-  width: calc(100% - 160px);
-  height: calc(100% - 160px - 72px);
-  margin: 80px;
-  padding: 40px;
-  border-radius: 40px;
-  box-sizing: border-box;
-  overflow: auto;
-
-  &.route-1 {
-    background-color: $blue-light-3;
-  }
-
-  &.route-2 {
-    background-color: $red-light-3;
-  }
-
-  &.route-3 {
-    background: $cyan-light-3;
-  }
-
-  code {
-    font-size: larger;
-  }
-}
-
 .element-common-styles {
   background-color: $cyan-standard;
   position: relative;
