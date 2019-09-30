@@ -110,16 +110,23 @@ const SharedElementTransitions = () => {
 
   if (!isLoaded) return <></>;
   return (
-    <HashRouter>
-      <div className={css.container}>
-        <Switch>
-          <Route exact={true} path={'/'} component={AvatarList} />
-          <Route exact={true} path={'/avenger/:id'} component={AvengerDetail} />
-          <Route path={'/avenger/:id/avatar'} component={AvengerAvatar} />
-          <Redirect to={'/'} />
-        </Switch>
-      </div>
-    </HashRouter>
+    <div className={css.container}>
+      <HashRouter>
+        <div className={css['fixed-container']}>
+          <Switch>
+            <Route exact={true} path={'/'} component={AvatarList} />
+            <Route exact={true} path={'/avenger/:id'} component={AvengerDetail} />
+            <Route path={'/avenger/:id/avatar'} component={AvengerAvatar} />
+            <Redirect to={'/'} />
+          </Switch>
+          <div className={cls(css['help-text'], css['help-text--bottom'])}>
+            <div>This uses some trickery to work as flawlessly as it does.</div>
+            <div>Code not recommended for production use without testing.</div>
+            <div>This is an "experiment" after all.</div>
+          </div>
+        </div>
+      </HashRouter>
+    </div>
   );
 };
 

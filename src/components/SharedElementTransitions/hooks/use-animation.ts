@@ -34,7 +34,7 @@ export const useSharedElementAnimation = (id: string) => {
       ],
       {
         duration: 250,
-        easing: 'ease-in-out',
+        easing: 'linear',
       }
     );
   }, [id]);
