@@ -1,0 +1,153 @@
+@import 'globals/variables';
+@import 'globals/mixins';
+
+.container {
+  @include expanded;
+  @include centered(true);
+  color: $grey-dark-4;
+  font-family: Lato, sans-serif;
+
+  h1, h2 {
+    font-weight: lighter;
+  }
+}
+
+.avatar-list {
+  list-style-type: none;
+  padding: 0;
+}
+
+.avenger-item {
+  display: grid;
+  grid-auto-columns: max-content 1fr;
+  grid-template-areas:
+    'avatar title'
+    'avatar bio';
+  grid-column-gap: $grid-base-2x;
+  padding: $grid-base-2x $grid-base-4x;
+  border: 1px solid $red-light-2;
+  background-color: $red-light-5;
+  color: $red-dark-2;
+  border-radius: 100vw;
+  margin: $grid-base-2x;
+  text-decoration: none;
+
+  &--alive {
+    border: 1px solid $cyan-light-2;
+    background-color: $cyan-light-5;
+    color: $cyan-dark-2;
+  }
+}
+
+.avenger-avatar {
+  grid-area: avatar;
+  width: 40px;
+  align-self: center;
+}
+
+.avenger-title {
+  grid-area: title;
+  display: grid;
+  grid-auto-columns: max-content;
+  grid-auto-flow: column;
+  grid-column-gap: $grid-base-2x;
+}
+
+.avenger-bio {
+  grid-area: bio;
+  font-size: smaller;
+  font-weight: $weight-light;
+}
+
+.avenger-name {
+  font-weight: $weight-heavy;
+}
+
+.avenger-status {
+  font-size: $font-small-2;
+  border-radius: $border-radius-standard;
+  border: 1px solid;
+  width: fit-content;
+  height: fit-content;
+  padding: 2px $grid-base;
+  align-self: center;
+  font-weight: $weight-heavy;
+  letter-spacing: 0.5px;
+  background-color: $red-light-2;
+  color: white;
+
+  &--alive {
+    background-color: $cyan-dark-1;
+    color: white;
+  }
+}
+
+.avenger-card {
+  padding: $grid-base-6x;
+  border-radius: $grid-base-4x;
+  @include shadow-3;
+  @include centered(true);
+  border: 1px solid $red-light-2;
+  background-color: $red-light-5;
+  color: $red-dark-2;
+
+  &--alive {
+    border: 1px solid $cyan-light-2;
+    background-color: $cyan-light-5;
+    color: $cyan-dark-2;
+  }
+}
+
+.detail-avatar {
+  @include square(180px);
+}
+
+.detail-name {
+  font-size: $font-big-2;
+  font-weight: $weight-heavy;
+}
+
+.detail-status {
+  font-weight: $weight-heavy;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.detail-bio {
+  margin-top: $grid-base-3x;
+  font-size: $font-standard;
+  font-weight: $weight-normal;
+}
+
+.back-button {
+  display: grid;
+  grid-auto-flow: column;
+  grid-column-gap: $grid-base-2x;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-top: $grid-base-5x;
+  line-height: 1;
+  text-decoration: none;
+  @include button-tertiary;
+
+  svg {
+    @include square($grid-base-5x);
+  }
+}
+
+.avatar-wrapper {
+  @include centered(true);
+  @include square(100%);
+}
+
+.avatar-preview-image {
+  @include square(50%);
+}
+
+.help-text {
+  font-style: italic;
+  font-size: $font-small-1;
+  color: $grey-standard;
+  margin-bottom: $grid-base-4x;
+}
