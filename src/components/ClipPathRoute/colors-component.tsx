@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion';
-import * as React from 'react';
-import { useEffect, useState } from 'react';
-import { shuffle } from 'utils/shuffle';
-
-import css from './styles.module.scss';
 import { useInterval } from 'hooks/use-interval';
+import React, { useState } from 'react';
+import { shuffle } from 'utils/shuffle';
+import css from './styles.module.scss';
 
 const spring = {
   type: 'spring',
