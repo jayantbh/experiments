@@ -9,6 +9,7 @@ const ReduxConnections = () => {
     <div className={css.container}>
       <h1>React-Redux experiment to show two connect approaches</h1>
       <h2>Check console logs to see updates triggered for each approach</h2>
+      <h3>Click any list item to update its value in the store</h3>
       <div className={css['two-items']}>
         <div className={css['example-container']}>
           <h3>Only the parent is connected, no children are</h3>
