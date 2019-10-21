@@ -1,17 +1,18 @@
 import pluralize from 'pluralize';
-import React, { useCallback, useRef } from 'react';
+import React, { useCallback, useMemo, useRef } from 'react';
 import { connect, Provider } from 'react-redux';
 
 import {
-  mapAllItemsToProps,
   mapDispatchToProps,
+  mapItemCountToProps,
   mapSingleItemToProps,
   store,
 } from 'components/ReduxConnections/redux-stuff';
+import { rangeMap } from 'utils/array';
 
 import css from './styles.module.scss';
 
-let renders = 0;
+const logStyles = 'color: coral; font-weight: bold;';
 
 type InternalItemProps = ReturnType<typeof mapSingleItemToProps> &
   ReturnType<typeof mapDispatchToProps> & {
@@ -20,8 +21,10 @@ type InternalItemProps = ReturnType<typeof mapSingleItemToProps> &
 
 const InternalItem = ({ index, item, updateItem }: InternalItemProps) => {
   const itemRef = useRef(item);
+  const renders = useRef(0);
+
   // tslint:disable-next-line
-  console.log('%cRenders:', 'color: coral; font-weight: bold;', ++renders, item, 'Same ref:', item === itemRef.current);
+  console.log('%cRenders:', logStyles, ++renders.current, item, 'Same ref:', item === itemRef.current);
   itemRef.current = item;
 
   const updateHandler = useCallback(() => updateItem(index), [index, updateItem]);
@@ -39,16 +42,23 @@ const Item = connect(
   mapDispatchToProps
 )(InternalItem);
 
-const InternalApp = ({ items }: ReturnType<typeof mapAllItemsToProps>) => {
-  const ItemCreator = useCallback((item, i) => <Item key={i} index={i} />, []);
+const InternalApp = ({ itemCount }: ReturnType<typeof mapItemCountToProps>) => {
+  const renders = useRef(0);
+
+  // tslint:disable-next-line
+  console.log('%cRenders for Parent:', logStyles, ++renders.current);
+
+  const ItemCreator = useCallback((_, i) => <Item key={i} index={i} />, []);
+  const items = useMemo(() => rangeMap(itemCount, ItemCreator), [itemCount, ItemCreator]);
+
   return (
     <div className={css['children-demo']}>
-      <ul>{items.map(ItemCreator)}</ul>
+      <ul>{items}</ul>
     </div>
   );
 };
 
-const App = connect(mapAllItemsToProps)(InternalApp);
+const App = connect(mapItemCountToProps)(InternalApp);
 
 const ConnectChildren = () => (
   <Provider store={store}>

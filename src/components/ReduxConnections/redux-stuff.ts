@@ -30,6 +30,7 @@ export const store = createStore<typeof defaultState, { type: string; payload?: 
   }
 );
 
+export const mapItemCountToProps = ({ items }: typeof defaultState) => ({ itemCount: items.length });
 export const mapAllItemsToProps = ({ items }: typeof defaultState) => ({ items });
 export const mapSingleItemToProps = ({ items }: typeof defaultState, { index }: { index: number }) => ({
   item: items[index],
