@@ -2,15 +2,16 @@
 @import 'globals/mixins';
 
 .container {
-   @include expanded;
-   @include centered(true);
-   color: $grey-dark-4;
-   font-family: Lato, sans-serif;
+  @include expanded;
+  @include centered(true);
+  color: $grey-dark-4;
+  font-family: Lato, sans-serif;
 
-   h1, h2 {
-     font-weight: lighter;
-   }
- }
+  h1,
+  h2 {
+    font-weight: lighter;
+  }
+}
 
 .navigation {
   display: grid;

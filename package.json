@@ -10,7 +10,15 @@
     "serve": "gatsby serve",
     "test": "jest",
     "predeploy": "gatsby build && echo \"jayant.dev\" > ./public/CNAME",
-    "deploy": "gh-pages -d public"
+    "deploy": "gh-pages -d public",
+    "format": "prettier --write \"src/**/*.{ts,tsx,js,scss}\"",
+    "format-staged": "pretty-quick --staged",
+    "check-format": "prettier --check \"src/**/*.{ts,tsx,js,scss}\""
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn format-staged"
+    }
   },
   "dependencies": {
     "@babel/core": "^7.4.5",
@@ -69,8 +77,10 @@
     "@types/uuid": "^3.4.5",
     "gatsby-plugin-tslint": "^0.0.2",
     "gh-pages": "^2.0.1",
+    "husky": "^4.2.1",
     "postcss-scss": "^2.0.0",
     "prettier": "^1.18.2",
+    "pretty-quick": "^2.0.1",
     "ts-jest": "^24.0.2",
     "tslint": "^5.18.0",
     "tslint-loader": "^3.5.4",

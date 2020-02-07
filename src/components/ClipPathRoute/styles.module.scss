@@ -2,14 +2,15 @@
 @import 'globals/mixins';
 
 .container {
-	@include expanded;
+  @include expanded;
   display: flex;
   align-items: center;
   flex-direction: column;
   font-family: Lato, sans-serif;
   color: $grey-dark-4;
 
-  h1, h2 {
+  h1,
+  h2 {
     font-weight: lighter;
   }
 }
@@ -98,7 +99,7 @@
     border-color: $blue-standard transparent;
 
     &:before {
-      content: "";
+      content: '';
       position: absolute;
       height: 0;
       width: 0;

@@ -37,7 +37,7 @@
 
   .abstract:nth-child(2n + 1) {
     @include expanded;
-    background: linear-gradient(246.07deg, #52D1DA 100%, #2CAEBA 14.6%);
+    background: linear-gradient(246.07deg, #52d1da 100%, #2caeba 14.6%);
   }
 
   .abstract:nth-child(2n) {
@@ -182,7 +182,7 @@
   .backdrop {
     .abstract:nth-child(2n + 1) {
       @include expanded;
-      background: linear-gradient(246.07deg, #E66B6B 100%, #A71B1B 14.6%);
+      background: linear-gradient(246.07deg, #e66b6b 100%, #a71b1b 14.6%);
     }
 
     .abstract:nth-child(2n) {

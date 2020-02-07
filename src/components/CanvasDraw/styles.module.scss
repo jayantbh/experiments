@@ -2,8 +2,8 @@
 @import 'globals/mixins';
 
 .container {
-	@include expanded;
-	@include centered;
+  @include expanded;
+  @include centered;
   overflow: hidden;
 }
 

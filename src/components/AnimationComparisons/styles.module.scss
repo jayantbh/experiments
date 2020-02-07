@@ -2,7 +2,7 @@
 @import 'globals/mixins';
 
 .container {
-	@include expanded;
+  @include expanded;
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -79,8 +79,12 @@ $offset: $wrapper-dimensions + $parent-padding;
 }
 
 @keyframes animate-left {
-  from { right: 0; }
-  to { right: calc(-100vw + #{$offset}); }
+  from {
+    right: 0;
+  }
+  to {
+    right: calc(-100vw + #{$offset});
+  }
 }
 
 .item-1 {
@@ -93,8 +97,12 @@ $offset: $wrapper-dimensions + $parent-padding;
 }
 
 @keyframes animate-transform {
-  from { transform: translateX(0); }
-  to { transform: translateX(calc(100vw - #{$offset})); }
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(calc(100vw - #{$offset}));
+  }
 }
 
 .item-2 {
