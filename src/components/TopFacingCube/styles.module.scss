@@ -1,0 +1,9 @@
+@import 'globals/variables';
+@import 'globals/mixins';
+
+.container {
+  @include expanded;
+  @include centered;
+  color: $grey-dark-4;
+  font-family: Lato, sans-serif;
+}
