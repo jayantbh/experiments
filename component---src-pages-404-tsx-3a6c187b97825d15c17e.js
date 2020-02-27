@@ -1,0 +1,2 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[3],{266:function(e,a,n){"use strict";n.r(a);var d=n(0),i=n.n(d);n(263);a.default=function(){return i.a.createElement("div",{className:"index-module--container--2IQ43 index-module--padded--2gWab"},i.a.createElement("div",{className:"index-module--brand--38Ksb"},"404"),i.a.createElement("div",{className:"index-module--brand-l2--2dgKz"},"maybe the sidebar can help?"))}}}]);
+//# sourceMappingURL=component---src-pages-404-tsx-3a6c187b97825d15c17e.js.map
