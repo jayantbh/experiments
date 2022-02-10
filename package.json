@@ -45,7 +45,7 @@
     "identity-obj-proxy": "^3.0.0",
     "jest": "^24.8.0",
     "jest-config": "^24.8.0",
-    "node-sass": "^4.12.0",
+    "node-sass": "^7.0.0",
     "pluralize": "^8.0.0",
     "ramda": "^0.26.1",
     "react": "^16.12.0",
